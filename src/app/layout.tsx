@@ -6,7 +6,7 @@ import { PlaneTakeoff, Phone, Mail, MapPin } from 'lucide-react'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'Tiquetes Baratos',
+  title: 'Tiquetes Economicos',
   description: 'Tu compañero de confianza para encontrar los mejores vuelos',
 }
 
@@ -24,7 +24,7 @@ export default function Layout({
               <div className="flex justify-between items-center">
                 <Link href="/" className="text-3xl font-bold flex items-center">
                   <PlaneTakeoff className="mr-2" />
-                  Tiquetes Baratos
+                  Tiquetes Economicos
                 </Link>
                 <nav>
                   <ul className="flex space-x-4">
@@ -44,7 +44,7 @@ export default function Layout({
             <div className="container mx-auto px-4 py-8">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div>
-                  <h3 className="text-xl font-bold mb-4">Sobre Tiquetes Baratos</h3>
+                  <h3 className="text-xl font-bold mb-4">Sobre Tiquetes Economicos</h3>
                   <p>Somos tu compañero de confianza para encontrar los mejores vuelos a los mejores precios. Viaja con nosotros y descubre el mundo.</p>
                 </div>
                 <div>
@@ -60,13 +60,13 @@ export default function Layout({
                   <h3 className="text-xl font-bold mb-4">Contacto</h3>
                   <ul className="space-y-2">
                     <li className="flex items-center"><Phone className="mr-2" /> +1 234 567 890</li>
-                    <li className="flex items-center"><Mail className="mr-2" /> info@tiquetesbaratos.com</li>
+                    <li className="flex items-center"><Mail className="mr-2" /> info@tiqueteseconomicos.com</li>
                     <li className="flex items-center"><MapPin className="mr-2" /> 123 Calle Principal, Ciudad</li>
                   </ul>
                 </div>
               </div>
               <div className="mt-8 pt-8 border-t border-gray-700 text-center">
-                <p>&copy; 2024 Tiquetes Baratos. Todos los derechos reservados.</p>
+                <p>&copy; 2024 Tiquetes Economicos. Todos los derechos reservados.</p>
               </div>
             </div>
           </footer>

@@ -72,7 +72,7 @@ export default function Page() {
       <div className="mt-8 p-4 bg-gray-50 rounded-lg shadow-md border border-gray-200">
         <h2 className="text-2xl font-bold mb-4 text-gray-900">Información de contacto</h2>
         <p className="text-gray-700">Teléfono: +1 234 567 890</p>
-        <p className="text-gray-700">Email: info@tiqutesbaratos.com</p>
+        <p className="text-gray-700">Email: info@tiqutesEeconomicos.com</p>
         <p className="text-gray-700">Dirección: 123 Calle Principal, Ciudad</p>
       </div>
     </div>
