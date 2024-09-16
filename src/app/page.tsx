@@ -3,8 +3,8 @@ import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Label } from '@/components/ui/label';  // Asegúrate de que esté correctamente importado
+import { Select, SelectContent, SelectItem, SelectTrigger } from "@/components/ui/select";
+import { Label } from '@/components/ui/label';
 
 interface SearchFormProps {
   onSearch: (from: string, to: string, departDate: string, returnDate: string | null, passengers: string, tripType: 'roundtrip' | 'oneway') => void;
@@ -76,9 +76,9 @@ function SearchForm({ onSearch }: SearchFormProps) {
             )}
             <div className="flex flex-col">
               <Label htmlFor="passengers" className="text-sm font-medium text-gray-700">Pasajeros</Label>
-              <Select value={passengers} onValueChange={setPassengers} className="border border-gray-300 rounded-md shadow-sm">
+              <Select value={passengers} onValueChange={setPassengers}>
                 <SelectTrigger id="passengers" className="p-2">
-                  <SelectValue placeholder="Seleccione número de pasajeros" />
+                  {passengers || "Seleccione número de pasajeros"}
                 </SelectTrigger>
                 <SelectContent>
                   {[1, 2, 3, 4, 5, 6].map(num => (
@@ -89,9 +89,9 @@ function SearchForm({ onSearch }: SearchFormProps) {
             </div>
             <div className="flex flex-col">
               <Label htmlFor="tripType" className="text-sm font-medium text-gray-700">Tipo de viaje</Label>
-              <Select value={tripType} onValueChange={setTripType} className="border border-gray-300 rounded-md shadow-sm">
+              <Select value={tripType} onValueChange={setTripType}>
                 <SelectTrigger id="tripType" className="p-2">
-                  <SelectValue placeholder="Seleccione tipo de viaje" />
+                  {tripType === 'roundtrip' ? 'Ida y vuelta' : 'Solo ida'}
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="roundtrip">Ida y vuelta</SelectItem>
@@ -177,9 +177,9 @@ function TicketList({ tickets }: TicketListProps) {
 
 function SpecialOffers() {
   const offers = [
-    { id: 1, title: "Vuelos a Europa", description: "Descuentos de hasta 30% en vuelos a destinos europeos", price: "Desde $499" },
-    { id: 2, title: "Escapada de fin de semana", description: "Vuelos de ida y vuelta a destinos nacionales", price: "Desde $199" },
-    { id: 3, title: "Vuelos a playas paradisíacas", description: "Disfruta del sol y la playa con nuestras ofertas especiales", price: "Desde $349" },
+    { id: 1, title: 'Vuelos a Europa', description: 'Descuentos de hasta 30% en vuelos a destinos europeos', price: 'Desde $499' },
+    { id: 2, title: 'Escapada de fin de semana', description: 'Vuelos de ida y vuelta a destinos nacionales', price: 'Desde $199' },
+    { id: 3, title: 'Vuelos a playas paradisíacas', description: 'Disfruta del sol y la playa con nuestras ofertas especiales', price: 'Desde $349' },
   ];
 
   return (
@@ -203,7 +203,6 @@ function SpecialOffers() {
   );
 }
 
-// Main Page Component
 function Page() {
   const [tickets, setTickets] = useState<Ticket[]>([]);
   const [loading, setLoading] = useState(false);
@@ -214,7 +213,7 @@ function Page() {
       const results = await searchTickets(from, to, departDate, returnDate, passengers, tripType);
       setTickets(results);
     } catch (error) {
-      console.error("Error fetching tickets:", error);
+      console.error('Error fetching tickets:', error);
     } finally {
       setLoading(false);
     }
