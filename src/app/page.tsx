@@ -23,6 +23,18 @@ function SearchForm({ onSearch }: SearchFormProps) {
     onSearch(from, to, departDate, tripType === 'roundtrip' ? returnDate : null, passengers, tripType);
   };
 
+  // Handle value change for tripType
+  const handleTripTypeChange = (value: string) => {
+    if (value === 'roundtrip' || value === 'oneway') {
+      setTripType(value as 'roundtrip' | 'oneway');
+    }
+  };
+
+  // Handle value change for passengers
+  const handlePassengersChange = (value: string) => {
+    setPassengers(value);
+  };
+
   return (
     <Card className="shadow-md rounded-lg border border-gray-200 bg-white">
       <CardContent>
@@ -76,7 +88,7 @@ function SearchForm({ onSearch }: SearchFormProps) {
             )}
             <div className="flex flex-col">
               <Label htmlFor="passengers" className="text-sm font-medium text-gray-700">Pasajeros</Label>
-              <Select value={passengers} onValueChange={setPassengers}>
+              <Select value={passengers} onValueChange={handlePassengersChange}>
                 <SelectTrigger id="passengers" className="p-2">
                   {passengers || "Seleccione número de pasajeros"}
                 </SelectTrigger>
@@ -89,7 +101,7 @@ function SearchForm({ onSearch }: SearchFormProps) {
             </div>
             <div className="flex flex-col">
               <Label htmlFor="tripType" className="text-sm font-medium text-gray-700">Tipo de viaje</Label>
-              <Select value={tripType} onValueChange={setTripType}>
+              <Select value={tripType} onValueChange={handleTripTypeChange}>
                 <SelectTrigger id="tripType" className="p-2">
                   {tripType === 'roundtrip' ? 'Ida y vuelta' : 'Solo ida'}
                 </SelectTrigger>
