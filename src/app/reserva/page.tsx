@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 'use client';
 
 import { useRouter } from 'next/navigation';
@@ -10,14 +11,16 @@ import Image from 'next/image'; // Import Image component from next/image
 
 export default function ReservaPage() {
   const router = useRouter();
-  const [query, setQuery] = useState<any>({});
   const [showQRCode, setShowQRCode] = useState(false);
 
-  useEffect(() => {
-    if (router.query) {
-      setQuery(router.query);
-    }
-  }, [router.query]);
+  // Elimina query y su efecto si no lo usas
+  // const [query, setQuery] = useState<any>({});
+
+  // useEffect(() => {
+  //   if (router.query) {
+  //     setQuery(router.query);
+  //   }
+  // }, [router.query]);
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -93,10 +96,10 @@ export default function ReservaPage() {
             <div className="text-center">
               <h2 className="text-lg font-semibold mb-4">Escanea el código QR para completar el pago</h2>
               <Image
-                src="/QR.jpg" // Adjusted path
+                src="/QR.jpg" // Ajusta la ruta según sea necesario
                 alt="Código QR de pago"
-                width={500} // Adjust width as needed
-                height={500} // Adjust height as needed
+                width={500} // Ajusta el ancho según sea necesario
+                height={500} // Ajusta la altura según sea necesario
                 className="mx-auto"
               />
             </div>
