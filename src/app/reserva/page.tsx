@@ -95,6 +95,7 @@ export default function ReservaPage() {
           ) : (
             <div className="text-center">
               <h2 className="text-lg font-semibold mb-4">Escanea el código QR para completar el pago</h2>
+              <h1 className="text-lg font-semibold mb-4">Bancolombia QR</h1>
               <Image
                 src="/QR.jpg" // Ajusta la ruta según sea necesario
                 alt="Código QR de pago"
