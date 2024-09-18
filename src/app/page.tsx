@@ -123,7 +123,9 @@ interface Ticket {
   from: string;
   to: string;
   departDate: string;
+  departTime: string; // Agrega esta línea
   returnDate?: string;
+  returnTime?: string; // Agrega esta línea si el viaje es de ida y vuelta
   passengers: string;
   tripType: 'roundtrip' | 'oneway';
   price: number;
@@ -133,20 +135,23 @@ interface Ticket {
 const searchTickets = async (from: string, to: string, departDate: string, returnDate: string | null, passengers: string, tripType: 'roundtrip' | 'oneway'): Promise<Ticket[]> => {
   await new Promise(resolve => setTimeout(resolve, 1500)); // Simular la demora de la búsqueda
   const airlines = ['AeroViajes', 'SkyHigh', 'VueloRápido', 'AirConnect'];
+  const getRandomTime = () => `${String(Math.floor(Math.random() * 24)).padStart(2, '0')}:${String(Math.floor(Math.random() * 60)).padStart(2, '0')}`;
 
   return Array.from({ length: 5 }, (_, i) => ({
     id: i + 1,
     from,
     to,
     departDate,
+    departTime: getRandomTime(), // Hora de salida
     returnDate: returnDate ?? '',
+    returnTime: returnDate ? getRandomTime() : undefined, // Hora de regreso, si aplica
     passengers,
     tripType,
-    // Asignar precio en función del tipo de viaje
-    price: tripType === 'roundtrip' ? 199800 : 99900, 
+    price: tripType === 'roundtrip' ? 199800 : 99900,
     airline: airlines[Math.floor(Math.random() * airlines.length)]
   }));
 };
+
 
 interface TicketItemProps {
   ticket: Ticket;
@@ -159,8 +164,8 @@ function TicketItem({ ticket }: TicketItemProps) {
         <CardTitle className="text-lg font-semibold">{ticket.from} a {ticket.to}</CardTitle>
       </CardHeader>
       <CardContent>
-        <p className="text-sm text-gray-600">Fecha de salida: {ticket.departDate}</p>
-        {ticket.returnDate && <p className="text-sm text-gray-600">Fecha de regreso: {ticket.returnDate}</p>}
+        <p className="text-sm text-gray-600">Fecha de salida: {ticket.departDate} {ticket.departTime}</p>
+        {ticket.returnDate && <p className="text-sm text-gray-600">Fecha de regreso: {ticket.returnDate} {ticket.returnTime}</p>}
         <p className="text-sm text-gray-600">Pasajeros: {ticket.passengers}</p>
         <p className="font-bold text-lg mt-2 text-gray-900">Precio: ${ticket.price}</p>
         <p className="text-sm text-gray-600">Aerolínea: {ticket.airline}</p>
@@ -171,7 +176,9 @@ function TicketItem({ ticket }: TicketItemProps) {
               from: ticket.from,
               to: ticket.to,
               departDate: ticket.departDate,
+              departTime: ticket.departTime, // Agrega esta línea
               returnDate: ticket.returnDate || '',
+              returnTime: ticket.returnTime || '', // Agrega esta línea
               passengers: ticket.passengers,
               tripType: ticket.tripType,
               price: ticket.price,
@@ -187,6 +194,7 @@ function TicketItem({ ticket }: TicketItemProps) {
     </Card>
   );
 }
+
 
 interface TicketListProps {
   tickets: Ticket[];

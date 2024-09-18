@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
-import Image from 'next/image'; // Import Image component
+import Image from 'next/image'; // Import Image component from next/image
 
 export default function ReservaPage() {
   const router = useRouter();
@@ -19,19 +19,6 @@ export default function ReservaPage() {
     }
   }, [router.query]);
 
-  const {
-    // Destructuring query parameters but not using them
-    // You can remove these if they are not needed
-    from, 
-    to, 
-    departDate, 
-    returnDate, 
-    passengers, 
-    tripType, 
-    price, 
-    airline
-  } = query;
-
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
@@ -41,8 +28,6 @@ export default function ReservaPage() {
     e.preventDefault();
     setShowQRCode(true);
   };
-
-  const qrImageUrl = '/path/to/your/qr-code-image.png'; // This variable is not used, you can remove it
 
   return (
     <div className="container mx-auto p-6">
@@ -107,7 +92,13 @@ export default function ReservaPage() {
           ) : (
             <div className="text-center">
               <h2 className="text-lg font-semibold mb-4">Escanea el código QR para completar el pago</h2>
-              <Image src="https://vuelosbaratoscolombia.com/wp-content/uploads/2024/09/Tiquetes-Baratos.jpg" alt="Código QR de pago" width={500} height={500} className="mx-auto" />
+              <Image
+                src="/QR.jpg" // Adjusted path
+                alt="Código QR de pago"
+                width={500} // Adjust width as needed
+                height={500} // Adjust height as needed
+                className="mx-auto"
+              />
             </div>
           )}
         </CardContent>
