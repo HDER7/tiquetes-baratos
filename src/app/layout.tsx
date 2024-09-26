@@ -59,7 +59,7 @@ export default function Layout({
                 <div>
                   <h3 className="text-xl font-bold mb-4">Contacto</h3>
                   <ul className="space-y-2">
-                    <li className="flex items-center"><Phone className="mr-2" /> +1 234 567 890</li>
+                    <li className="flex items-center"><Phone className="mr-2" /> 01800064652</li>
                     <li className="flex items-center"><Mail className="mr-2" /> info@tiqueteseconomicos.com</li>
                     <li className="flex items-center"><MapPin className="mr-2" /> 123 Calle Principal, Ciudad</li>
                   </ul>
